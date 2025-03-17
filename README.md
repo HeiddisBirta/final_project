@@ -84,7 +84,8 @@ yarn test
 ```
 
 ## Notes
-
+-   From original creator:
+  
 -   Always run `yarn install` after pulling new changes
 -   I'll be constantly updating this repo as I'll be adding more sections to it, so please always check the projects section of this repo to see what tasks are under todo and in progress
 -   Coming Soon [I'll be doing a screencast](https://www.youtube.com/realstoman). Soon I'll be uploading a video to my YouTube channel where I'll be going through the process of creating this portoflio
