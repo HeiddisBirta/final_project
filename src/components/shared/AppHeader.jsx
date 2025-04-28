@@ -17,9 +17,9 @@ const AppHeader = () => {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			id="nav"
-			className="sm:container sm:mx-auto px-4 sm:px-8 py-4"
+			className="sm:container sm:mx-auto px-4 sm:px-8 py-6"
 		>
-			<div className="z-10 max-w-screen-lg xl:max-w-screen-xl flex justify-between sm:justify-start xl:justify-center items-center">
+			<div className="z-10 max-w-screen-lg xl:max-w-screen-xl flex justify-between sm:justify-start xl:justify-center items-center text-primary-dark dark:text-ternary-light">
 				{/* Header links container */}
 				<div className="flex items-center space-x-8">
 					{/* Small screen hamburger menu */}
@@ -35,16 +35,19 @@ const AppHeader = () => {
 					</div>
 
 					{/* Header links small screen */}
+
 					<div className={`${showMenu ? 'block' : 'hidden'} sm:flex justify-between`}>
-						<Link to="/projects" className="block text-left text-lg text-primary-dark dark:text-ternary-light  sm:mx-4 mb-2 sm:py-2">
-							Projects
+            <Link to="/" className="block text-left text-lg text-primary-dark dark:text-ternary-light sm:mx-4 mb-2 sm:py-2 border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark">
+							LOGO
 						</Link>
-						<Link to="/about" className="block text-left text-lg text-primary-dark dark:text-ternary-light  sm:mx-4 mb-2 sm:py-2 border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dar">
+
+						<Link to="/about"    className="block text-left text-lg text-primary-dark dark:text-ternary-light  sm:mx-4 mb-2 sm:py-2 border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark">
 							About Me
 						</Link>
 						<Link to="/contact" className="block text-left text-lg text-primary-dark dark:text-ternary-light sm:mx-4 mb-2 sm:py-2 border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark">
 							Contact
 						</Link>
+
 					</div>
 				</div>
 
