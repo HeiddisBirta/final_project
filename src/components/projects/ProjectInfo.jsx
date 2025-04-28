@@ -8,11 +8,11 @@ const ProjectInfo = () => {
 		<div className="block sm:flex gap-0 sm:gap-10 mt-14">
 			<div className="w-full sm:w-1/3 text-left">
 				{/* Single project client details */}
-				<div className="mb-7">
-					<p className="font-general-regular text-2xl font-semibold text-secondary-dark dark:text-secondary-light mb-2">
+				{/* <div className="mb-7"> */}
+					{/* <p className="font-general-regular text-2xl font-semibold text-secondary-dark dark:text-secondary-light mb-2">
 						{singleProjectData.ProjectInfo.ClientHeading}
-					</p>
-					<ul className="leading-loose">
+					</p> */}
+					{/* <ul className="leading-loose">
 						{singleProjectData.ProjectInfo.CompanyInfo.map(
 							(info) => {
 								return (
@@ -38,7 +38,7 @@ const ProjectInfo = () => {
 							}
 						)}
 					</ul>
-				</div>
+				</div> */}
 
 				{/* Single project objectives */}
 				<div className="mb-7">

@@ -2,9 +2,6 @@
 import Image1 from '../images/ui-project-1.jpg';
 import Image2 from '../images/web-project-2.jpg';
 import Image3 from '../images/mobile-project-2.jpg';
-import Image4 from '../images/mobile-project-1.jpg';
-import Image5 from '../images/web-project-1.jpg';
-import Image6 from '../images/ui-project-2.jpg';
 // Import icons
 import {
 	FiFacebook,
@@ -16,7 +13,7 @@ import {
 
 export const singleProjectData = {
 	ProjectHeader: {
-		title: 'Project Management UI',
+		title: 'something',
 		publishDate: 'Jul 26, 2021',
 		tags: 'UI / Frontend',
 	},
@@ -45,11 +42,7 @@ export const singleProjectData = {
 				title: 'Name',
 				details: 'Company Ltd',
 			},
-			{
-				id: 2,
-				title: 'Services',
-				details: 'UI Design & Frontend Development',
-			},
+			
 			{
 				id: 3,
 				title: 'Website',
@@ -134,29 +127,5 @@ export const singleProjectData = {
 			},
 		],
 	},
-	RelatedProject: {
-		title: 'Related Projects',
-		Projects: [
-			{
-				id: 1,
-				title: 'Mobile UI',
-				img: Image4,
-			},
-			{
-				id: 2,
-				title: 'Web Application',
-				img: Image5,
-			},
-			{
-				id: 3,
-				title: 'UI Design',
-				img: Image6,
-			},
-			{
-				id: 4,
-				title: 'Kabul Mobile App UI',
-				img: Image3,
-			},
-		],
-	},
+
 };
