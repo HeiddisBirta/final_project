@@ -12,7 +12,7 @@ const socialLinks = [
 	{
 		id: 3,
 		icon: <FiInstagram />,
-		url: 'https://www.instagram.com/heiddisbirta//',
+		url: 'https://www.instagram.com/heiddisbirta/',
 	},
 	{
 		id: 4,
