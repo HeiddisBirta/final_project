@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 const AnimatedBackground = () => {
   const blobStyle = (gradient) => ({
     width: "50vw",
+    height: "50vh",
     background: gradient,
     filter: "blur(80px)",
     position: "absolute",
@@ -62,7 +63,7 @@ const AnimatedBackground = () => {
         transition={{ duration: 60, ease: "linear", repeat: Infinity }}
       />
 
-     
+      
       <motion.div
         style={blobStyle(
           "radial-gradient(circle at 90% 50%, rgba(10, 100, 40, 0.15), transparent 60%)"
