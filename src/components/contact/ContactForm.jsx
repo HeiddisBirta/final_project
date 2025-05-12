@@ -3,7 +3,7 @@ import FormInput from '../reusable/FormInput';
 
 const ContactForm = () => {
 	return (
-		<div className="w-full lg:w-1/2">
+		<div className="w-full">
 			<div className="leading-loose">
 				<form
 					onSubmit={(e) => {

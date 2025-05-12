@@ -12,7 +12,7 @@ const socialLinks = [
 	{
 		id: 3,
 		icon: <FiInstagram />,
-		url: 'https://www.instagram.com/heiddisbirta/',
+		url: 'https://www.instagram.com/heiddisbirta//',
 	},
 	{
 		id: 4,
@@ -37,7 +37,7 @@ const AppFooter = () => {
 								href={link.url}
 								target="__blank"
 								key={link.id}
-								className="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 cursor-pointer rounded-lg bg-gray-50 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-4 duration-300"
+								className="text-gray-800 hover:text-gray-200 dark:hover:text-gray-200 cursor-pointer rounded-lg bg-red-600 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-4 duration-300"
 							>
 								<i className="text-xl sm:text-2xl md:text-3xl">
 									{link.icon}

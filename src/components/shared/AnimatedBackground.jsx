@@ -1,38 +1,62 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const AnimatedBackground = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [darkModeIsOn, setDarkModeIsOn] = useState(false);
 
+  // Check if dark mode is active by looking at the HTML class
   useEffect(() => {
-    const checkDark = () => {
-      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    const checkIfDark = () => {
+      setDarkModeIsOn(document.documentElement.classList.contains("dark"));
     };
 
-    checkDark();
+    checkIfDark();
 
-    const observer = new MutationObserver(checkDark);
-    observer.observe(document.documentElement, {
+    // OBSERVE to see if anything changed in the HTML -> did someone press the light/dark mode button 
+    const watchMode = new MutationObserver(checkIfDark);
+    watchMode.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ["class"],
     });
 
-    return () => observer.disconnect();
+    return () => watchMode.disconnect();
   }, []);
 
-  const backgroundColor = isDarkMode ? "#00025a" : "#ffee00";
+  // Set background color depending on light or dark mode
+  const backgroundColor = darkModeIsOn ? "#00025a" : "#f47aff";
 
-  const blobColor = isDarkMode
+  // Set blob color depending on light and dark mode
+  const blobColor = darkModeIsOn
     ? "radial-gradient(circle, rgba(255, 89, 0, 0.85), transparent 40%)"
     : "radial-gradient(circle, rgba(0, 255, 247, 0.85), transparent 40%)";
 
-  const baseBlobStyle = {
+
+  const blobStyle = {
     width: "60vw",
     height: "60vh",
     background: blobColor,
     filter: "blur(50px)",
     position: "absolute",
   };
+
+
+  const blobConfigs = useMemo(() => {
+
+    // Function to create an array of random positions (for x or y)
+    const getRandomMovementSteps = (unit = "vw", max = 40) =>
+      Array.from({ length: 6 }, () =>
+        `${Math.floor(Math.random() * max * 2 - max)}${unit}`
+      );
+
+    return Array.from({ length: 6 }).map(() => ({
+      startingTop: `${Math.floor(Math.random() * 50)}%`,
+      startingLeft: `${Math.floor(Math.random() * 50)}%`,
+      pathX: getRandomMovementSteps("vw", 40),
+      pathY: getRandomMovementSteps("vh", 40),
+      spin: [0, Math.random() > 0.5 ? 360 : -360],
+      floatSpeed: Math.floor(Math.random() * 20) + 60,
+    }));
+  }, []);
 
   return (
     <div
@@ -48,80 +72,26 @@ const AnimatedBackground = () => {
         backgroundColor,
       }}
     >
-      {/* Blob 1 */}
-      <motion.div
-        style={{ ...baseBlobStyle, top: "5%", left: "10%" }}
-        animate={{
-          x: ["0vw", "20vw", "0vw", "-20vw", "0vw"],
-          y: ["0vh", "20vh", "40vh", "20vh", "0vh"],
-          rotate: [0, 360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-      />
-
-      {/* Blob 2 */}
-      <motion.div
-        style={{ ...baseBlobStyle, top: "60%", left: "10%" }}
-        animate={{
-          x: ["0vw", "-25vw", "0vw", "25vw", "0vw"],
-          y: ["0vh", "-30vh", "-60vh", "-30vh", "0vh"],
-          rotate: [0, -360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ duration: 55, ease: "linear", repeat: Infinity }}
-      />
-
-      {/* Blob 3 */}
-      <motion.div
-        style={{ ...baseBlobStyle, bottom: "5%", right: "5%" }}
-        animate={{
-          x: ["0vw", "-30vw", "0vw", "30vw", "0vw"],
-          y: ["0vh", "30vh", "60vh", "30vh", "0vh"],
-          rotate: [0, 360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ duration: 58, ease: "linear", repeat: Infinity }}
-      />
-
-      {/* Blob 4 */}
-      <motion.div
-        style={{ ...baseBlobStyle, top: "20%", right: "5%" }}
-        animate={{
-          x: ["0vw", "30vw", "0vw", "-30vw", "0vw"],
-          y: ["0vh", "-20vh", "-40vh", "-20vh", "0vh"],
-          rotate: [0, -360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ duration: 62, ease: "linear", repeat: Infinity }}
-      />
-
-      {/* Blob 5 */}
-      <motion.div
-        style={{ ...baseBlobStyle, top: "30%", left: "50%" }}
-        animate={{
-          x: ["0vw", "-20vw", "20vw", "-20vw", "0vw"],
-          y: ["0vh", "20vh", "-20vh", "20vh", "0vh"],
-          rotate: [0, 360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ duration: 54, ease: "linear", repeat: Infinity }}
-      />
-
-      {/* Blob 6 */}
-      <motion.div
-        style={{ ...baseBlobStyle, top: "50%", right: "50%" }}
-        animate={{
-          x: ["0vw", "25vw", "-25vw", "25vw", "0vw"],
-          y: ["0vh", "-25vh", "25vh", "-25vh", "0vh"],
-          rotate: [0, -360],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ duration: 57, ease: "linear", repeat: Infinity }}
-      />
+      {/*loop through the blobs*/}
+      {blobConfigs.map((blob, index) => (
+        <motion.div
+          key={index}
+          style={{ ...blobStyle, top: blob.startingTop, left: blob.startingLeft }}
+          animate={{
+            x: blob.pathX,
+            y: blob.pathY,
+            rotate: blob.spin,
+            scale: [1, 1.05, 1], // means that they are pulsing a little
+          }}
+          transition={{
+            duration: blob.floatSpeed,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        />
+      ))}
     </div>
   );
 };
 
 export default AnimatedBackground;
-
